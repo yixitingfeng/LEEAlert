@@ -1736,7 +1736,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                 
                 label.textAlignment = NSTextAlignmentCenter;
                 
-                label.font = [UIFont boldSystemFontOfSize:20.0f];
+                label.font = [UIFont systemFontOfSize:20.0f];
                 
                 label.textColor = DEF_HEXColor(0x302e2E);
                 
@@ -1849,13 +1849,13 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
             }
         }
         
-        if (!action.titleColor) action.titleColor = [UIColor redColor];
+        if (!action.titleColor) action.titleColor = [UIColor colorWithRed:21/255.0f green:123/255.0f blue:245/255.0f alpha:1.0f];
         
         if (!action.backgroundColor) action.backgroundColor = self.config.modelHeaderColor;
         
         if (!action.backgroundHighlightColor) action.backgroundHighlightColor = action.backgroundHighlightColor = [UIColor colorWithWhite:0.97 alpha:1.0f];
         
-        if (!action.borderColor) action.borderColor = DEF_HEXColor(0xCCCCCC);
+        if (!action.borderColor) action.borderColor = [UIColor colorWithWhite:0.86 alpha:1.0f];
         
         if (!action.borderWidth) action.borderWidth = 0.35f;
         
@@ -2319,7 +2319,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                 
                 label.textAlignment = NSTextAlignmentCenter;
                 
-                label.font = [UIFont boldSystemFontOfSize:16.0f];
+                label.font = [UIFont systemFontOfSize:18.0f];
                 
                 label.textColor = [UIColor darkGrayColor];
                 
