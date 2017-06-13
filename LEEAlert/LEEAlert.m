@@ -286,7 +286,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
             
             action.title = title;
             
-            action.font = [UIFont boldSystemFontOfSize:18.0f];
+            action.font = [UIFont systemFontOfSize:18.0f];
             
             action.clickBlock = block;
         });
@@ -925,7 +925,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     if (action.borderColor) [self setBorderColor:action.borderColor];
     
-    if (action.borderWidth) [self setBorderWidth:action.borderWidth < 0.5f ? 0.5f : action.borderWidth];
+    if (action.borderWidth) [self setBorderWidth:action.borderWidth < 0.35f ? 0.35f : action.borderWidth];
     
     if (action.image) [self setImage:action.image forState:UIControlStateNormal];
     
@@ -1855,9 +1855,9 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         
         if (!action.backgroundHighlightColor) action.backgroundHighlightColor = action.backgroundHighlightColor = [UIColor colorWithWhite:0.97 alpha:1.0f];
         
-        if (!action.borderColor) action.borderColor = DEF_HEXColor(0x999999);
+        if (!action.borderColor) action.borderColor = DEF_HEXColor(0xCCCCCC);
         
-        if (!action.borderWidth) action.borderWidth = 0.5f;
+        if (!action.borderWidth) action.borderWidth = 0.35f;
         
         if (!action.borderPosition) action.borderPosition = (self.config.modelActionArray.count == 2 && idx == 0) ? LEEActionBorderPositionTop | LEEActionBorderPositionRight : LEEActionBorderPositionTop;
         
