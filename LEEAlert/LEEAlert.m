@@ -1011,7 +1011,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     if (_leftLayer) _leftLayer.frame = CGRectMake(0, 0, self.borderWidth, self.frame.size.height);
     
-    if (_rightLayer) _rightLayer.frame = CGRectMake(self.frame.size.width - self.borderWidth, 0, self.borderWidth, self.frame.size.height);
+    if (_rightLayer) _rightLayer.frame = CGRectMake(self.frame.size.width - self.borderWidth, 10, self.borderWidth, self.frame.size.height - 20);
 }
 
 - (void)addTopBorder{
