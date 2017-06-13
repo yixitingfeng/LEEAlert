@@ -27,6 +27,7 @@
 #define SCREEN_HEIGHT CGRectGetHeight([[UIScreen mainScreen] bounds])
 #define VIEW_WIDTH CGRectGetWidth(self.view.frame)
 #define VIEW_HEIGHT CGRectGetHeight(self.view.frame)
+#define DEF_HEXColor(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface LEEAlert ()
 
@@ -182,12 +183,12 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         
         // 初始化默认值
         
-        _modelCornerRadius = 13.0f; //默认圆角半径
-        _modelShadowOpacity = 0.3f; //默认阴影不透明度
-        _modelHeaderInsets = UIEdgeInsetsMake(20.0f, 20.0f, 20.0f, 20.0f); //默认间距
+        _modelCornerRadius = 10.0f; //默认圆角半径
+        _modelShadowOpacity = 0.5f; //默认阴影不透明度
+        _modelHeaderInsets = UIEdgeInsetsMake(26.0f, 20.0f, 35.0f, 20.0f); //默认间距
         _modelOpenAnimationDuration = 0.3f; //默认打开动画时长
         _modelCloseAnimationDuration = 0.2f; //默认关闭动画时长
-        _modelBackgroundStyleColorAlpha = 0.45f; //自定义背景样式颜色透明度 默认为半透明背景样式 透明度为0.45f
+        _modelBackgroundStyleColorAlpha = 0.5f; //自定义背景样式颜色透明度 默认为半透明背景样式 透明度为0.45f
         
         _modelActionSheetCancelActionSpaceColor = [UIColor clearColor]; //默认actionsheet取消按钮间隔颜色
         _modelActionSheetCancelActionSpaceWidth = 10.0f; //默认actionsheet取消按钮间隔宽度
@@ -325,7 +326,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
             
             item.type = LEEItemTypeTitle;
             
-            item.insets = UIEdgeInsetsMake(5, 0, 5, 0);
+            item.insets = UIEdgeInsetsMake(5, 0, 10, 0);
             
             item.block = block;
         });
@@ -924,7 +925,7 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
     
     if (action.borderColor) [self setBorderColor:action.borderColor];
     
-    if (action.borderWidth) [self setBorderWidth:action.borderWidth < 0.35f ? 0.35f : action.borderWidth];
+    if (action.borderWidth) [self setBorderWidth:action.borderWidth < 0.5f ? 0.5f : action.borderWidth];
     
     if (action.image) [self setImage:action.image forState:UIControlStateNormal];
     
@@ -1735,9 +1736,9 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                 
                 label.textAlignment = NSTextAlignmentCenter;
                 
-                label.font = [UIFont boldSystemFontOfSize:18.0f];
+                label.font = [UIFont boldSystemFontOfSize:20.0f];
                 
-                label.textColor = [UIColor blackColor];
+                label.textColor = DEF_HEXColor(0x302e2E);
                 
                 label.numberOfLines = 0;
                 
@@ -1764,9 +1765,9 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
                 
                 label.textAlignment = NSTextAlignmentCenter;
                 
-                label.font = [UIFont systemFontOfSize:14.0f];
+                label.font = [UIFont systemFontOfSize:18.0f];
                 
-                label.textColor = [UIColor blackColor];
+                label.textColor = DEF_HEXColor(0x999999);
                 
                 label.numberOfLines = 0;
                 
@@ -1840,19 +1841,27 @@ typedef NS_ENUM(NSInteger, LEEBackgroundStyle) {
         
         if (!action.title) action.title = @"按钮";
         
-        if (!action.titleColor) action.titleColor = [UIColor colorWithRed:21/255.0f green:123/255.0f blue:245/255.0f alpha:1.0f];
+        if (!action.titleColor) {
+            if (action.title && [action.title isEqualToString:@"取消"]) {
+                action.titleColor = DEF_HEXColor(0xCCCCCC);
+            }else if ([action.title isEqualToString:@"确认"]) {
+                action.titleColor = DEF_HEXColor(0x30D164);
+            }
+        }
+        
+        if (!action.titleColor) action.titleColor = [UIColor redColor];
         
         if (!action.backgroundColor) action.backgroundColor = self.config.modelHeaderColor;
         
         if (!action.backgroundHighlightColor) action.backgroundHighlightColor = action.backgroundHighlightColor = [UIColor colorWithWhite:0.97 alpha:1.0f];
         
-        if (!action.borderColor) action.borderColor = [UIColor colorWithWhite:0.84 alpha:1.0f];
+        if (!action.borderColor) action.borderColor = DEF_HEXColor(0x999999);
         
-        if (!action.borderWidth) action.borderWidth = 0.35f;
+        if (!action.borderWidth) action.borderWidth = 0.5f;
         
         if (!action.borderPosition) action.borderPosition = (self.config.modelActionArray.count == 2 && idx == 0) ? LEEActionBorderPositionTop | LEEActionBorderPositionRight : LEEActionBorderPositionTop;
         
-        if (!action.height) action.height = 45.0f;
+        if (!action.height) action.height = 48.0f;
         
         LEEActionButton *button = [LEEActionButton button];
         
